@@ -1,9 +1,10 @@
 import React, { useEffect } from "react";
+import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { listProduct } from "../../redux/actions/ProductActions";
 
 
-export default function AllProducts(props) {
+export default function AllProducts() {
   const dispatch = useDispatch();
   const productList = useSelector((state) => state.productList);
   const { loading, error, products } = productList;
@@ -26,7 +27,7 @@ export default function AllProducts(props) {
               {products.map((product) => {
                 return (
                   <li key={product.id} className="products_item">
-                    <a href="/test/">
+                   <Link to={`/products/${product.slug}`}>
                       <figure className="products_img">
                         <img
                           src={
@@ -39,7 +40,7 @@ export default function AllProducts(props) {
                         <p className="card_ttl">{product.name}</p>
                         <p className="price">test test test</p>
                       </div>
-                    </a>
+                    </Link>
                   </li>
                 );
               })}
